@@ -66,4 +66,18 @@ public class CalculatorEndpoint {
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Multiply")
+    @ResponsePayload
+    public MultiplyResponse multiplyResponse(@RequestPayload Multiply multiplyRequest){
+
+        int a=multiplyRequest.getIntA();
+        int b=multiplyRequest.getIntB();
+
+        MultiplyResponse response=new MultiplyResponse();
+        response.setMultiplyResult(a*b);
+
+        return response;
+    }
+
+
 }
