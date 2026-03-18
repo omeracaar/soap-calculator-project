@@ -8,6 +8,11 @@ import com.omeracar.calculator.wsdl.Add;
 import com.omeracar.calculator.wsdl.AddResponse;
 import com.omeracar.calculator.wsdl.Subtract;
 import com.omeracar.calculator.wsdl.SubtractResponse;
+import com.omeracar.calculator.wsdl.Divide;
+import com.omeracar.calculator.wsdl.DivideResponse;
+import com.omeracar.calculator.wsdl.Multiply;
+import com.omeracar.calculator.wsdl.MultiplyResponse;
+
 
 @Endpoint
 public class CalculatorEndpoint {
@@ -33,14 +38,32 @@ public class CalculatorEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Subtract")
     @ResponsePayload
-    public SubtractResponse subtractResponse(@RequestPayload Subtract subRequest){
+    public SubtractResponse subtractResponse(@RequestPayload Subtract subtractRequest){
 
-        int a=subRequest.getIntA();
-        int b=subRequest.getIntB();
+        int a=subtractRequest.getIntA();
+        int b=subtractRequest.getIntB();
 
         SubtractResponse response = new SubtractResponse();
         response.setSubtractResult(a - b);
 
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Divide")
+    @ResponsePayload
+    public DivideResponse divideResponse(@RequestPayload Divide divideRequest){
+
+        int a=divideRequest.getIntA();
+        int b=divideRequest.getIntB();
+
+        if (b==0){
+            throw new ArithmeticException("You can't divide by 0");
+        }
+
+        DivideResponse response=new DivideResponse();
+        response.setDivideResult(a/b);
+
+        return response;
+    }
+
 }
