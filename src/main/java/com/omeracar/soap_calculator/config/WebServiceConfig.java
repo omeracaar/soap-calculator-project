@@ -6,25 +6,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
+import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
+@EnableWs
 @Configuration
-public class WebServiceConfig {
+public class WebServiceConfig extends WsConfigurerAdapter {
 
-    //soap requestleri karşılıyor
     @Bean
-    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServletRegistration(ApplicationContext applicationContext){
-        MessageDispatcherServlet servlet=new MessageDispatcherServlet();
-        servlet.setApplicationContext(applicationContext);
+    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
+            ApplicationContext context) {
+        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        servlet.setApplicationContext(context);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet,"/ws/*");//localhost:8080/ws/
+        return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    //calculator.wsdl i dışarıya açıyor
-    @Bean(name = "calculator") //localhost:8080/ws/calculator.wsdl
+    @Bean(name = "calculator")
     public SimpleWsdl11Definition calculatorWsdl() {
         return new SimpleWsdl11Definition(new ClassPathResource("calculator.wsdl"));
     }
 }
-

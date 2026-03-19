@@ -3,7 +3,7 @@ package com.omeracar.soap_calculator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.omeracar")
 public class SoapCalculatorApplication {
 
 	public static void main(String[] args) {

@@ -1,83 +1,75 @@
 package com.omeracar.soap_calculator.endpoint;
 
+import com.omeracar.calculator.ws.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import com.omeracar.calculator.wsdl.Add;
-import com.omeracar.calculator.wsdl.AddResponse;
-import com.omeracar.calculator.wsdl.Subtract;
-import com.omeracar.calculator.wsdl.SubtractResponse;
-import com.omeracar.calculator.wsdl.Divide;
-import com.omeracar.calculator.wsdl.DivideResponse;
-import com.omeracar.calculator.wsdl.Multiply;
-import com.omeracar.calculator.wsdl.MultiplyResponse;
-
 
 @Endpoint
 public class CalculatorEndpoint {
 
-    //wsdl den geldi
     private static final String NAMESPACE_URI = "http://tempuri.org/";
 
-    //wsdl deki element name i add olduğu için endpoint
+    private CalculatorSoap getSoap() {
+        Calculator service = new Calculator();
+        return service.getCalculatorSoap();
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Add")
     @ResponsePayload
-    public AddResponse addResponse(@RequestPayload Add addRequest){
+    public AddResponse add(@RequestPayload Add request) {
+        int a = request.getIntA();
+        int b = request.getIntB();
 
-        //request attığımız sayılar
-        //bu metotlar hazir geldi
-        int a=addRequest.getIntA();
-        int b=addRequest.getIntB();
+        int result = getSoap().add(a, b);
 
-        AddResponse response=new AddResponse();
-        response.setAddResult(a+b);
+        AddResponse response = new AddResponse();
+        response.setAddResult(result);
 
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Subtract")
     @ResponsePayload
-    public SubtractResponse subtractResponse(@RequestPayload Subtract subtractRequest){
+    public SubtractResponse subtract(@RequestPayload Subtract request) {
+        int a = request.getIntA();
+        int b = request.getIntB();
 
-        int a=subtractRequest.getIntA();
-        int b=subtractRequest.getIntB();
+        int result = getSoap().subtract(a, b);
 
         SubtractResponse response = new SubtractResponse();
-        response.setSubtractResult(a - b);
-
-        return response;
-    }
-
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Divide")
-    @ResponsePayload
-    public DivideResponse divideResponse(@RequestPayload Divide divideRequest){
-
-        int a=divideRequest.getIntA();
-        int b=divideRequest.getIntB();
-
-        if (b==0){
-            throw new ArithmeticException("You can't divide by 0");
-        }
-
-        DivideResponse response=new DivideResponse();
-        response.setDivideResult(a/b);
+        response.setSubtractResult(result);
 
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Multiply")
     @ResponsePayload
-    public MultiplyResponse multiplyResponse(@RequestPayload Multiply multiplyRequest){
+    public MultiplyResponse multiply(@RequestPayload Multiply request) {
+        int a = request.getIntA();
+        int b = request.getIntB();
 
-        int a=multiplyRequest.getIntA();
-        int b=multiplyRequest.getIntB();
+        int result = getSoap().multiply(a, b);
 
-        MultiplyResponse response=new MultiplyResponse();
-        response.setMultiplyResult(a*b);
+        MultiplyResponse response = new MultiplyResponse();
+        response.setMultiplyResult(result);
 
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Divide")
+    @ResponsePayload
+    public DivideResponse divide(@RequestPayload Divide request) {
+        int a = request.getIntA();
+        int b = request.getIntB();
+
+        int result = getSoap().divide(a, b);
+
+        DivideResponse response = new DivideResponse();
+        response.setDivideResult(result);
+
+        return response;
+    }
 
 }
