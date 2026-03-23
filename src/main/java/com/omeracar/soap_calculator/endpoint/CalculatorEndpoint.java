@@ -1,6 +1,6 @@
 package com.omeracar.soap_calculator.endpoint;
 
-import com.omeracar.calculator.ws.*;
+import com.omeracar.soap_calculator.ws.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;

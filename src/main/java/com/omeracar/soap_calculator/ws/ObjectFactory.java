@@ -1,5 +1,5 @@
 
-package com.omeracar.calculator.ws;
+package com.omeracar.soap_calculator.ws;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

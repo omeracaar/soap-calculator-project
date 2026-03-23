@@ -1,5 +1,5 @@
 
-package com.omeracar.calculator.ws;
+package com.omeracar.soap_calculator.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlType;
     "intA",
     "intB"
 })
-@XmlRootElement(name = "Subtract")
-public class Subtract {
+@XmlRootElement(name = "Divide")
+public class Divide {
 
     protected int intA;
     protected int intB;

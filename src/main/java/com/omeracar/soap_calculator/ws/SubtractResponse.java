@@ -1,5 +1,5 @@
 
-package com.omeracar.calculator.ws;
+package com.omeracar.soap_calculator.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="MultiplyResult" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="SubtractResult" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -29,28 +29,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "multiplyResult"
+    "subtractResult"
 })
-@XmlRootElement(name = "MultiplyResponse")
-public class MultiplyResponse {
+@XmlRootElement(name = "SubtractResponse")
+public class SubtractResponse {
 
-    @XmlElement(name = "MultiplyResult")
-    protected int multiplyResult;
+    @XmlElement(name = "SubtractResult")
+    protected int subtractResult;
 
     /**
-     * Gets the value of the multiplyResult property.
+     * Gets the value of the subtractResult property.
      * 
      */
-    public int getMultiplyResult() {
-        return multiplyResult;
+    public int getSubtractResult() {
+        return subtractResult;
     }
 
     /**
-     * Sets the value of the multiplyResult property.
+     * Sets the value of the subtractResult property.
      * 
      */
-    public void setMultiplyResult(int value) {
-        this.multiplyResult = value;
+    public void setSubtractResult(int value) {
+        this.subtractResult = value;
     }
 
 }
