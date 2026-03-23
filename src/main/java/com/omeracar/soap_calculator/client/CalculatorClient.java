@@ -21,4 +21,19 @@ public class CalculatorClient {
         return calculatorSoap.add(a, b);
     }
 
+    public static int subtract(int a, int b) {
+        CalculatorSoap calculatorSoap = createCalculatorSoap();
+        return calculatorSoap.subtract(a, b);
+    }
+
+    public static int multiply(int a, int b) {
+        CalculatorSoap calculatorSoap = createCalculatorSoap();
+        return calculatorSoap.multiply(a, b);
+    }
+
+    public static int divide(int a, int b) {
+        CalculatorSoap calculatorSoap = createCalculatorSoap();
+        return calculatorSoap.divide(a, b);
+    }
+
 }
